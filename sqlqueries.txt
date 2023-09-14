@@ -1,0 +1,35 @@
+1.
+INSERT INTO Customers (CustomerName, ContactName, Address, City, PostalCode, Country)
+VALUES ('John doe','John ke','gate B','Nairobi','00100','Kenya');
+
+2.INSERT INTO Orders (CustomerID, EmployeeID, OrderDate, ShipperID)
+VALUES (
+    (SELECT CustomerID FROM Customers WHERE CustomerName = 'John Doe'),
+    (SELECT EmployeeID FROM Employees WHERE LastName = 'Fuller'),
+    '2023-09-14',
+    (SELECT ShipperID FROM Shippers WHERE ShipperName = 'Speedy Express')
+);
+
+3. INSERT INTO Products (ProductName, SupplierID, CategoryID)
+VALUES ('Vodka', (SELECT SupplierID FROM Suppliers WHERE SupplierName = 'Tokyo Traders'), (SELECT CategoryID FROM Categories WHERE CategoryName = 'Beverages'));
+
+4.INSERT INTO OrderDetails (OrderID, ProductID, Quantity)
+VALUES (
+    (SELECT OrderID FROM Orders WHERE CustomerID = 92),
+    (SELECT ProductID FROM Products WHERE ProductName = 'Vodka'),
+    10
+);
+
+5.DELETE FROM Customers WHERE CustomerID = 56;
+
+6.SELECT * FROM Customers WHERE Country IN ('Brazil', 'Italy');
+
+7.SELECT * FROM Customers WHERE CustomerName LIKE '%son%';
+
+8.
+
+9.SELECT ShipperID, COUNT(*) AS TotalOrdersShipped
+FROM Orders
+GROUP BY ShipperID;
+
+10.SELECT * FROM Products WHERE UnitPrice > 25;
